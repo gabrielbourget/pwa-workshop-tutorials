@@ -37,6 +37,11 @@ document.addEventListener("DOMContentLoaded", () => {
 	fetchAttendees().then(renderAttendees);
 
 	//TODO: Etape 2 - Installation du Service Worker au chargement du document
+  if (navigator.serviceWorker) {
+    navigator.serviceWorker.register("/sw.js", { scope: "/app "})
+      .then((swRegObj) => console.log("[scripts.js]: Service worker registered -> ", swRegObj))
+      .catch((err) => console.error("[scripts.js]: Error registering the service worker -> ", err));
+  }
 
 	//TODO: Etape 4 - Réception de messages depuis le Service Worker
 });
